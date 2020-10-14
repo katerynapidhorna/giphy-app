@@ -13,7 +13,6 @@ export default function Giphs() {
     dispatch(fetchAllGiphs(newGiphs));
   }, [activate]);
 
-  console.log("data", giphs);
   return (
     <div>
       <form
