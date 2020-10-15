@@ -12,7 +12,7 @@ export default function SearchGiphs() {
 
   useEffect(() => {
     dispatch(fetchAllGiphs(newGiphs));
-  }, [activate]);
+  }, [dispatch, activate]);
 
   return (
     <div>
@@ -32,10 +32,10 @@ export default function SearchGiphs() {
         />
         <input type="submit" value="Search" />
       </form>
-      <div class="giph-container">
+      <div className="giph-container">
         {giphs &&
           giphs.map((g, i) => {
-            return <img key={i} src={g.images.downsized.url} />;
+            return <img key={i} src={g.images.downsized.url} alt={g.title} />;
           })}
       </div>
     </div>
