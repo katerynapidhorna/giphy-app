@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import fetchAllGiphs from "../store/giphs/actions";
-import selectGiphs from "../store/giphs/selectors";
+import fetchAllGiphs from "../../store/SearchGiphs/actions";
+import selectGiphs from "../../store/SearchGiphs/selectors";
+import "./SearchGiphs.css";
 
-export default function Giphs() {
+export default function SearchGiphs() {
   const dispatch = useDispatch();
   const giphs = useSelector(selectGiphs);
   const [newGiphs, set_newGiphs] = useState(null);
@@ -21,7 +22,7 @@ export default function Giphs() {
           set_activate(!activate);
         }}
       >
-        <label>Serch for giphs</label>
+        {/* <label>Serch for giphs</label> */}
         <input
           type="text"
           placeholder="type anything"
@@ -29,12 +30,14 @@ export default function Giphs() {
             set_newGiphs(e.target.value);
           }}
         />
-        <input type="submit" />
+        <input type="submit" value="Search" />
       </form>
-      {giphs &&
-        giphs.map((g, i) => {
-          return <img key={i} src={g.images.downsized.url} />;
-        })}
+      <div class="giph-container">
+        {giphs &&
+          giphs.map((g, i) => {
+            return <img key={i} src={g.images.downsized.url} />;
+          })}
+      </div>
     </div>
   );
 }
