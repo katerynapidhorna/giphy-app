@@ -36,5 +36,14 @@ input[type="submit"] {
 .giph-container img {
   margin: 10px;
   align-self: center;
-  width: 35%;
+  width: 25%;
+}
+
+.load-more {
+  width: 80%;
+  margin: 0 auto;
+  height: 1em;
+  padding: 1em 0;
+  background-color: purple;
+  cursor: pointer;
 }
