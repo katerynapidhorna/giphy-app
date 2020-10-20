@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import fetchAllGiphs, { loadMore } from "../../store/SearchGiphs/actions";
 import selectGiphs from "../../store/SearchGiphs/selectors";
 import "./SearchGiphs.css";
 
-export default function SearchGiphs() {
+export default function SearchGiphs(props) {
+  const params = useParams();
+  const history = useHistory();
   const dispatch = useDispatch();
   const giphs = useSelector(selectGiphs);
-  const [newGiphs, set_newGiphs] = useState("cats");
+  const [newGiphs, set_newGiphs] = useState(props.Query || "cats");
   const [activate, set_activate] = useState(false);
   const [isClicked, set_isClicked] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllGiphs(newGiphs));
-  }, [activate]);
+    //add search query to url
+    props.updateState(newGiphs);
+    console.log(props.Query);
+  }, [activate, props.Query]);
 
   //if the loading block within the view port dispatch more giphs
   useEffect(() => {
@@ -23,7 +29,6 @@ export default function SearchGiphs() {
       set_isClicked(!isClicked);
     }
   }, [isClicked]);
-
   return (
     <div>
       <form
