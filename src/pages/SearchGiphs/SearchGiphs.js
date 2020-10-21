@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import useClippy from "use-clippy";
 
 import fetchAllGiphs, { loadMore } from "../../store/SearchGiphs/actions";
 import selectGiphs from "../../store/SearchGiphs/selectors";
 import "./SearchGiphs.css";
 
 export default function SearchGiphs(props) {
-  const params = useParams();
   const history = useHistory();
+  const [clipboard, setClipboard] = useClippy();
   const dispatch = useDispatch();
   const giphs = useSelector(selectGiphs);
   const [newGiphs, set_newGiphs] = useState(
@@ -57,7 +58,17 @@ export default function SearchGiphs(props) {
       <div className="giph-container">
         {giphs &&
           giphs.map((g, i) => {
-            return <img key={i} src={g.images.downsized.url} alt={g.title} />;
+            return (
+              <img
+                className="giphie"
+                key={i}
+                src={g.images.downsized.url}
+                alt={g.title}
+                onClick={() => {
+                  setClipboard(g.images.downsized.url);
+                }}
+              />
+            );
           })}
       </div>
       <div
