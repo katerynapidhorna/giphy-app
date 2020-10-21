@@ -60,3 +60,23 @@ input[type="submit"] {
   background-color: purple;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 600px) {
+  form {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .giph-container {
+    width: 100%;
+  }
+
+  input[type="text"] {
+    height: 3em;
+    width: 68%;
+  }
+
+  input[type="submit"] {
+    height: 3.3em;
+  }
+}
