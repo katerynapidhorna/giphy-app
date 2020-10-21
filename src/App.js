@@ -9,14 +9,14 @@ function App() {
   const [Query, setQuery] = useQueryParam("q", StringParam);
   const history = useHistory();
 
-  const updateState = (data) => {
+  const updateUrlQueryState = (data) => {
     setQuery(data);
   };
 
   return (
     <div className="App">
       <Route path={`/`}>
-        <SearchGiphs query={Query} updateState={updateState} />
+        <SearchGiphs query={Query} updateUrlQueryState={updateUrlQueryState} />
       </Route>
     </div>
   );

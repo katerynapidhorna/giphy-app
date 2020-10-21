@@ -11,16 +11,17 @@ export default function SearchGiphs(props) {
   const history = useHistory();
   const dispatch = useDispatch();
   const giphs = useSelector(selectGiphs);
-  const [newGiphs, set_newGiphs] = useState(props.Query || "cats");
+  const [newGiphs, set_newGiphs] = useState(
+    history.location.search.replace(/\?+\q+\=/, "") || "cats"
+  );
   const [activate, set_activate] = useState(false);
   const [isClicked, set_isClicked] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllGiphs(newGiphs));
     //add search query to url
-    props.updateState(newGiphs);
-    console.log(props.Query);
-  }, [activate, props.Query]);
+    props.updateUrlQueryState(newGiphs);
+  }, [activate]);
 
   //if the loading block within the view port dispatch more giphs
   useEffect(() => {
@@ -29,6 +30,12 @@ export default function SearchGiphs(props) {
       set_isClicked(!isClicked);
     }
   }, [isClicked]);
+
+  useEffect(() => {
+    console.log("worked", history.location.search);
+    dispatch(fetchAllGiphs(history.location.search.replace(/\?+\q+\=/, "")));
+  }, [props.query]);
+
   return (
     <div>
       <form
