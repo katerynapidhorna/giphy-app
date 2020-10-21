@@ -49,6 +49,7 @@ export default function SearchGiphs(props) {
         <input
           type="text"
           placeholder="type anything"
+          autofocus
           onChange={(e) => {
             set_newGiphs(e.target.value);
           }}
@@ -70,14 +71,14 @@ export default function SearchGiphs(props) {
               />
             );
           })}
-      </div>
-      <div
-        className="load-more"
-        onClick={(e) => {
-          set_isClicked(!isClicked);
-        }}
-      >
-        {isClicked ? "Loading..." : "Load more"}
+        <div
+          className="load-more"
+          onClick={(e) => {
+            set_isClicked(!isClicked);
+          }}
+        >
+          {isClicked ? "Loading..." : "Load more"}
+        </div>
       </div>
     </div>
   );

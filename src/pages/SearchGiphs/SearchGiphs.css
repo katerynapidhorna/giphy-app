@@ -3,7 +3,7 @@
 } */
 
 form {
-  background: black;
+  background: #00142d;
   width: 80%;
   margin: 3em auto 0 auto;
   padding: 2em 0;
@@ -27,12 +27,14 @@ input[type="submit"] {
 
 .giph-container {
   display: flex;
+  position: relative;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 80%;
   margin: 0 auto;
   padding-top: 50px;
+  padding-bottom: 5em;
   /* border: 5px solid purple; */
   background-color: rgb(0 0 0 / 20%);
   backdrop-filter: blur(5px);
@@ -50,8 +52,9 @@ input[type="submit"] {
 }
 
 .load-more {
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
+  position: absolute;
+  bottom: 1em;
   height: 1em;
   padding: 1em 0;
   background-color: purple;
