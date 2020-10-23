@@ -49,7 +49,7 @@ export default function SearchGiphs(props) {
         <input
           type="text"
           placeholder="type anything"
-          autofocus
+          ref={(input) => input && input.focus()}
           onChange={(e) => {
             set_newGiphs(e.target.value);
           }}
@@ -65,6 +65,7 @@ export default function SearchGiphs(props) {
                 key={i}
                 src={g.images.downsized.url}
                 alt={g.title}
+                title="Click to copy giph url"
                 onClick={() => {
                   setClipboard(g.images.downsized.url);
                 }}
